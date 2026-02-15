@@ -1,0 +1,468 @@
+/* ============================
+   CSS Variables & Reset
+   ============================ */
+:root {
+    --primary: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    --primary-dark: #4338CA;
+    --secondary: #10B981;
+    --bg-dark: #0F172A;
+    --bg-card: rgba(30, 41, 59, 0.8);
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --border: rgba(148, 163, 184, 0.1);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --success: #10B981;
+    --error: #EF4444;
+    --warning: #F59E0B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Amiri', 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.8;
+    min-height: 100vh;
+    direction: rtl;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================
+   Container & Layout
+   ============================ */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* ============================
+   Header
+   ============================ */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.logo {
+    margin-bottom: 1rem;
+    display: inline-block;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.title {
+    font-family: 'Amiri', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* ============================
+   Form Card
+   ============================ */
+.form-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px var(--shadow);
+    animation: fadeInUp 0.6s ease-out;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.form-section {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.form-group select option {
+    background: #1E293B;
+    color: var(--text-primary);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* ============================
+   Buttons
+   ============================ */
+.btn-primary {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--primary);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(79, 70, 229, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    padding: 0.875rem 1.5rem;
+    background: rgba(100, 116, 139, 0.2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(100, 116, 139, 0.3);
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+.btn-download {
+    padding: 0.875rem 1.5rem;
+    background: var(--success);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-download:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    flex-shrink: 0;
+}
+
+/* ============================
+   Progress Section
+   ============================ */
+.progress-section,
+.result-section,
+.error-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.progress-card,
+.result-card,
+.error-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px var(--shadow);
+    text-align: center;
+}
+
+.progress-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 12px;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 12px;
+    transition: width 0.5s ease;
+    width: 0%;
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+}
+
+.progress-message {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.progress-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================
+   Result Section
+   ============================ */
+.success-icon {
+    margin-bottom: 1rem;
+    color: var(--success);
+    animation: scaleIn 0.6s ease-out;
+}
+
+.result-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.result-message {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.video-preview {
+    margin: 2rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.video-preview video {
+    width: 100%;
+    max-height: 600px;
+    display: block;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================
+   Error Section
+   ============================ */
+.error-icon {
+    margin-bottom: 1rem;
+    color: var(--error);
+    animation: shake 0.5s ease-out;
+}
+
+.error-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--error);
+}
+
+.error-message {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* ============================
+   Footer
+   ============================ */
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-note {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+/* ============================
+   Utility Classes
+   ============================ */
+.hidden {
+    display: none !important;
+}
+
+/* ============================
+   Animations
+   ============================ */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* ============================
+   Responsive Design
+   ============================ */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .form-card,
+    .progress-card,
+    .result-card,
+    .error-card {
+        padding: 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-download,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.75rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+}

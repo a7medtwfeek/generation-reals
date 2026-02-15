@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مُولِّد فيديوهات آيات القرآن الكريم</title>
+    <meta name="description" content="أنشئ فيديوهات قصيرة لآيات القرآن الكريم مع تلاوة القراء وخلفيات جميلة">
+
+    <!-- Google Fonts - Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&family=Scheherazade+New:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="25" cy="25" r="23" stroke="url(#gradient)" stroke-width="3" />
+                    <path d="M25 10 L25 40 M15 25 L35 25" stroke="url(#gradient)" stroke-width="2"
+                        stroke-linecap="round" />
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="50" y2="50">
+                            <stop offset="0%" style="stop-color:#4F46E5" />
+                            <stop offset="100%" style="stop-color:#7C3AED" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="title">مُولِّد فيديوهات آيات القرآن</h1>
+            <p class="subtitle">أنشئ فيديوهات قصيرة احترافية لآيات القرآن الكريم</p>
+        </header>
+
+        <!-- Main Form -->
+        <main class="main-content">
+            <form id="videoForm" class="form-card">
+                <div class="form-section">
+                    <h2 class="section-title">اختر القارئ والسورة</h2>
+
+                    <!-- Reciter Selection -->
+                    <div class="form-group">
+                        <label for="reciter">القارئ</label>
+                        <select id="reciter" name="reciter" required>
+                            <option value="">اختر القارئ...</option>
+                        </select>
+                    </div>
+
+                    <!-- Surah Selection -->
+                    <div class="form-group">
+                        <label for="surah">السورة</label>
+                        <select id="surah" name="surah" required>
+                            <option value="">اختر السورة...</option>
+                        </select>
+                    </div>
+
+                    <!-- Verse Range -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="verseStart">من الآية</label>
+                            <input type="number" id="verseStart" name="verseStart" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="verseEnd">إلى الآية</label>
+                            <input type="number" id="verseEnd" name="verseEnd" min="1" value="1" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-primary" id="generateBtn">
+                    <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>إنشاء الفيديو</span>
+                </button>
+            </form>
+
+            <!-- Progress Section -->
+            <div id="progressSection" class="progress-section hidden">
+                <div class="progress-card">
+                    <h3 class="progress-title">جاري الإنشاء...</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <p class="progress-message" id="progressMessage">جاري البدء...</p>
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div id="resultSection" class="result-section hidden">
+                <div class="result-card">
+                    <div class="success-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="result-title">تم إنشاء الفيديو بنجاح!</h3>
+                    <p class="result-message">الفيديو جاهز للتحميل</p>
+
+                    <!-- Video Preview -->
+                    <div class="video-preview" id="videoPreview">
+                        <!-- Video will be loaded here -->
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <a href="#" id="downloadBtn" class="btn-download" download>
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            تحميل الفيديو
+                        </a>
+                        <button id="createAnotherBtn" class="btn-secondary">
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M12 4v16m8-8H4" />
+                            </svg>
+                            إنشاء فيديو آخر
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Section -->
+            <div id="errorSection" class="error-section hidden">
+                <div class="error-card">
+                    <div class="error-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="error-title">حدث خطأ</h3>
+                    <p class="error-message" id="errorMessage">حاول مرة أخرى</p>
+                    <button id="retryBtn" class="btn-secondary">المحاولة مرة أخرى</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>مُولِّد فيديوهات آيات القرآن الكريم | تم الإنشاء بواسطة Ahmed Twfeek</p>
+            <p class="footer-note">الصوت من everyayah.com | النصوص من api.alquran.cloud | الخلفيات من Pexels</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+Flask==3.0.0
+requests==2.31.0
+Pillow==10.1.0
+mutagen==1.47.0
+arabic-reshaper==3.0.0
+python-bidi==0.4.2
+python-dotenv==1.0.0
+Werkzeug==3.0.1
+pathlib
+google-generativeai>=0.3.0
+
+# Optional: For production-grade Arabic rendering (recommended)
+# cairocffi
+# pangocffi
