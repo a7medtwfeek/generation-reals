@@ -73,12 +73,24 @@ def generate_video():
         }
         
         def generate_in_background():
+            # إنشاء مجلد مؤقت خاص بهذا الـ job
+            from pathlib import Path
+            import shutil
+            
+            job_temp_dir = Path(f"temp/job_{job_id}")
+            job_temp_dir.mkdir(parents=True, exist_ok=True)
+            
             def progress_callback(progress, message):
                 jobs[job_id]['progress'] = progress
                 jobs[job_id]['message'] = message
             
             try:
-                video_path = final_generator.generate(
+                # إنشاء generator خاص بهذا الـ job مع مجلد مؤقت خاص
+                from final_generator import FinalVideoGenerator
+                job_generator = FinalVideoGenerator()
+                job_generator.temp_dir = job_temp_dir  # استخدام مجلد مؤقت خاص
+                
+                video_path = job_generator.generate(
                     reciter_id=reciter_id,
                     surah_number=surah_number,
                     verse_start=verse_start,
@@ -97,6 +109,13 @@ def generate_video():
             except Exception as e:
                 jobs[job_id]['status'] = 'failed'
                 jobs[job_id]['error'] = str(e)
+            finally:
+                # تنظيف المجلد المؤقت الخاص بهذا الـ job
+                try:
+                    if job_temp_dir.exists():
+                        shutil.rmtree(job_temp_dir)
+                except:
+                    pass
         
         thread = threading.Thread(target=generate_in_background)
         thread.daemon = True
