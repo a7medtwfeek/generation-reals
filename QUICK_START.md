@@ -1,79 +1,161 @@
-# 🚀 دليل البدء السريع | Quick Start Commands
+# 🚀 دليل التشغيل السريع
+# Quick Start Guide
 
 ## للمستخدمين الجدد | For New Users
 
-### 1️⃣ تشخيص المشاكل
+### 1️⃣ استنساخ المشروع | Clone the Project
+
 ```bash
-python diagnose.py
-```
-✅ يفحص FFmpeg، المكتبات، الإنترنت، والملفات
-
-### 2️⃣ اختبار سريع  
-```bash
-python test_generator.py
-```
-✅ ينشئ فيديو تجريبي (آية واحدة)
-
-### 3️⃣ تشغيل التطبيق
-```bash
-python main.py
-```
-✅ ثم افتح: http://localhost:5000
-
----
-
-## إذا واجهت مشكلة | If You Have Issues
-
-### الخطأ: "FFmpeg not found"
-```bash
-# تحقق من FFmpeg
-ffmpeg -version
-
-# إذا لم يعمل، حمّله من:
-# https://www.gyan.dev/ffmpeg/builds/
+git clone https://github.com/YOUR_USERNAME/quran-video-generator.git
+cd quran-video-generator
 ```
 
-### الخطأ: "فشل في إنشاء الفيديو"
-```bash
-# 1. شغّل المُشخص
-python diagnose.py
+### 2️⃣ إنشاء بيئة افتراضية | Create Virtual Environment
 
-# 2. شاهد رسائل الخطأ
-# 3. راجع TROUBLESHOOTING.md
+**على Windows:**
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
-### الخطأ: "Module not found"
+**على Linux/Mac:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3️⃣ تثبيت المتطلبات | Install Requirements
+
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### 4️⃣ تثبيت FFmpeg | Install FFmpeg
 
-## ملفات مفيدة | Useful Files
+**Windows:**
+1. حمل FFmpeg من: https://www.gyan.dev/ffmpeg/builds/
+2. فك الضغط ونسخ المجلد إلى `C:\ffmpeg`
+3. أضف `C:\ffmpeg\bin` إلى متغير البيئة PATH
 
-- `README.md` - الدليل الكامل
-- `TROUBLESHOOTING.md` - حل المشاكل
-- `diagnose.py` - فحص النظام
-- `test_generator.py` - اختبار التوليد
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install ffmpeg
+```
 
----
+**Mac:**
+```bash
+brew install ffmpeg
+```
 
-## أوامر سريعة | Quick Commands
+**التحقق من التثبيت:**
+```bash
+ffmpeg -version
+```
+
+### 5️⃣ تشغيل التطبيق | Run the Application
 
 ```bash
-# الانتقال للمجلد
-cd "c:\Users\Ahmed\Videos\توليد1"
+python main_final.py
+```
 
-# تشخيص
-python diagnose.py
+### 6️⃣ فتح المتصفح | Open Browser
 
-# اختبار
-python test_generator.py
-
-# تشغيل
-python main.py
+افتح المتصفح واذهب إلى:
+```
+http://localhost:5000
 ```
 
 ---
 
-**مهم:** شغّل `diagnose.py` أولاً قبل أي شيء!
+## ✨ الاستخدام | Usage
+
+1. **اختر القارئ** من القائمة المنسدلة (أكثر من 60 قارئ متاح)
+2. **اختر السورة** من قائمة السور (114 سورة)
+3. **حدد نطاق الآيات**:
+   - من الآية: رقم الآية الأولى
+   - إلى الآية: رقم الآية الأخيرة
+4. **اضغط "إنشاء الفيديو"**
+5. **انتظر** حتى ينتهي الإنشاء (سترى شريط التقدم)
+6. **حمل الفيديو** الناتج
+
+---
+
+## 📁 مكان الملفات | File Locations
+
+- **الفيديوهات الناتجة:** `output/`
+- **الملفات المؤقتة:** `temp/` (تُحذف تلقائياً)
+- **كاش الخلفيات:** `backgrounds/`
+
+---
+
+## ⚙️ الإعدادات الأساسية | Basic Settings
+
+لتخصيص التطبيق، افتح ملف `config.py` وعدل:
+
+```python
+# أبعاد الفيديو (عمودي للريلز)
+VIDEO_WIDTH = 1080
+VIDEO_HEIGHT = 1920
+
+# حجم الخط
+TEXT_FONT_SIZE = 60
+
+# جودة الفيديو
+VIDEO_BITRATE = "2M"
+```
+
+---
+
+## 🔧 استكشاف الأخطاء | Troubleshooting
+
+### المشكلة: `FFmpeg not found`
+**الحل:** تأكد من تثبيت FFmpeg وإضافته للـ PATH
+
+### المشكلة: `ModuleNotFoundError`
+**الحل:** تأكد من تفعيل البيئة الافتراضية وتثبيت المتطلبات:
+```bash
+pip install -r requirements.txt
+```
+
+### المشكلة: الخط العربي لا يظهر
+**الحل:** تأكد من وجود خطوط عربية في مجلد `fonts/`
+
+### المشكلة: فشل تحميل الخلفيات
+**الحل:** تحقق من اتصال الإنترنت
+
+---
+
+## 📚 مزيد من المعلومات | More Information
+
+- **الدليل الكامل:** [README.md](README.md)
+- **دليل التحديث:** [UPDATE_GUIDE.md](UPDATE_GUIDE.md)
+- **دليل GitHub:** [GITHUB_DEPLOY.md](GITHUB_DEPLOY.md)
+- **استكشاف الأخطاء:** [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
+---
+
+## 🎯 مثال سريع | Quick Example
+
+```bash
+# 1. استنساخ المشروع
+git clone https://github.com/YOUR_USERNAME/quran-video-generator.git
+cd quran-video-generator
+
+# 2. إعداد البيئة
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+
+# 3. تشغيل التطبيق
+python main_final.py
+
+# 4. افتح المتصفح
+# http://localhost:5000
+```
+
+---
+
+**بالتوفيق! 🌟**
+
+للدعم والمساعدة، راجع [TROUBLESHOOTING.md](TROUBLESHOOTING.md) أو افتح Issue على GitHub.

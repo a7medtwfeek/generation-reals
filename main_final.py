@@ -135,6 +135,8 @@ def download_video(filename):
 
 
 if __name__ == '__main__':
+    import os
+    
     print("=" * 70)
     print("مُولِّد فيديوهات آيات القرآن - النسخة النهائية")
     print("Final Quran Video Generator")
@@ -144,7 +146,12 @@ if __name__ == '__main__':
     print("  ✓ كل آية = فيديو مستقل (ayah_1.mp4, ayah_2.mp4, ...)")
     print("  ✓ دمج تلقائي في فيديو نهائي واحد")
     print("  ✓ تنظيف تلقائي للملفات المؤقتة")
-    print("\nالخادم يعمل على: http://localhost:5000")
+    
+    # Get port from environment variable (for deployment platforms)
+    port = int(os.environ.get('PORT', 5000))
+    
+    print(f"\nالخادم يعمل على: http://localhost:{port}")
     print("\nاضغط Ctrl+C للإيقاف\n")
     
-    app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
+    app.run(debug=False, host='0.0.0.0', port=port, threaded=True)
+
